@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DescGen AI - Product Description Generator</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #f5f7fa; }
+    .card { background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    h1 { margin-top: 0; }
+    textarea, input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; box-sizing: border-box; }
+    button { background: #1a73e8; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+    button:hover { background: #1557b0; }
+    #output { margin-top: 20px; padding: 16px; background: #f8f9fa; border-radius: 8px; white-space: pre-wrap; min-height: 100px; }
+    .note { font-size: 13px; color: #666; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>DescGen AI</h1>
+    <p>Generate high-converting product descriptions for Amazon, Shopify, Etsy & more in seconds.</p>
+    
+    <label>Product Name</label>
+    <input type="text" id="name" placeholder="e.g. Wireless Noise-Cancelling Headphones">
+    
+    <label>Key Features / Specs</label>
+    <textarea id="features" rows="4" placeholder="Bluetooth 5.3, 40h battery, ANC, etc."></textarea>
+    
+    <label>Target Platform</label>
+    <select id="platform">
+      <option>Amazon</option>
+      <option>Shopify</option>
+      <option>Etsy</option>
+      <option>General</option>
+    </select>
+    
+    <label>Tone</label>
+    <select id="tone">
+      <option>Professional & Persuasive</option>
+      <option>Casual & Friendly</option>
+      <option>Luxury</option>
+      <option>Technical</option>
+    </select>
+    
+    <button id="generate">Generate Description</button>
+    
+    <div id="output">Your AI-generated description will appear here.</div>
+    
+    <div class="note">
+      Free tier: Limited generations. Premium unlocks unlimited + bulk + SEO optimization.<br>
+      For production: Connect to your backend API that uses an LLM (OpenAI, Grok, Claude, etc.) with usage tracking & Stripe.
+    </div>
+  </div>
+  <script>
+    document.getElementById('generate').addEventListener('click', async () => {
+      const name = document.getElementById('name').value;
+      const features = document.getElementById('features').value;
+      const platform = document.getElementById('platform').value;
+      const tone = document.getElementById('tone').value;
+      
+      if (!name || !features) {
+        document.getElementById('output').textContent = 'Please fill in product name and features.';
+        return;
+      }
+      
+      document.getElementById('output').textContent = 'Generating...';
+      
+      const prompt = `Write a high-converting product description for ${platform}.\nProduct: ${name}\nFeatures: ${features}\nTone: ${tone}\nInclude: compelling headline, 3-5 benefit bullets, and a closing CTA. Optimize for SEO where relevant.`;
+      
+      document.getElementById('output').textContent = `[DEMO MODE]\n\nPrompt that would be sent to LLM:\n\n${prompt}\n\n---\nIn production this calls your backend which returns the generated text and tracks usage for monetization.`;
+    });
+  </script>
+</body>
+</html>

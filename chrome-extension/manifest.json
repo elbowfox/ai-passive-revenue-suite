@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "PageMind AI Summarizer",
+  "version": "1.0.0",
+  "description": "Instantly summarize any webpage, extract key points, and generate social posts with AI. Freemium passive revenue tool.",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
